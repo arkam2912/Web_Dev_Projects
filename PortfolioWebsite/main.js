@@ -14,6 +14,30 @@ menuLinks.forEach((menuLink) => {
     navbarMenu.classList.remove('active');
   });
 });
+const sections = document.querySelectorAll('.section');
+
+
+sections.forEach((section, index) => {
+  if (index % 2 === 0) {
+    section.classList.add('scroll-animation-left');
+  } else {
+    section.classList.add('scroll-animation-right');
+  }
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible'); // Remove 'visible' class when section is not in view
+    }
+  });
+}, { threshold: 0.1 });
+
+sections.forEach(section => {
+  observer.observe(section);
+});
 
 function handleScroll() {
   const header = document.getElementById('header');
@@ -50,24 +74,20 @@ if (typed) {
     backDelay: 2000
   });
 }
-let isScrolling = false; // Track whether the page is currently scrolling
+
+let isScrolling = false;
 
 menuLinks.forEach(link => {
   link.addEventListener('click', function(event) {
     event.preventDefault();
-
-    // Remove the 'active_link' class from all links
     menuLinks.forEach(item => {
       item.classList.remove('active_link');
     });
-
-    // Add the 'active_link' class to the clicked link
     this.classList.add('active_link');
 
     const targetId = this.getAttribute('href').substring(1);
     const targetSection = document.getElementById(targetId);
 
-    // Temporarily disable scroll event listener
     isScrolling = true;
 
     window.scrollTo({
@@ -75,15 +95,14 @@ menuLinks.forEach(link => {
       behavior: 'smooth'
     });
 
-    // Re-enable scroll event listener after scrolling is done
-    setTimeout(() => {
+      setTimeout(() => {
       isScrolling = false;
-    }, 1000); // Adjust the delay if necessary
+    }, 1000); 
   });
 });
 
 function handleScroll() {
-  if (isScrolling) return; // Skip updating active link during scroll from click
+  if (isScrolling) return;
 
   const header = document.getElementById('header');
   const sections = document.querySelectorAll('section');
