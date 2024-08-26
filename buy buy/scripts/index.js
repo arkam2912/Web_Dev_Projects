@@ -1,6 +1,6 @@
 let bagItems = JSON.parse(localStorage.getItem('bagItems')) || [];
 let allItems = [];
-let currentCategory = 'All'; // Default category to display all items
+let currentCategory = 'All'; 
 
 onLoad();
 
@@ -8,9 +8,8 @@ function onLoad() {
     let bagItemsStr = localStorage.getItem('bagItems');
     bagItems = bagItemsStr ? JSON.parse(bagItemsStr) : [];
   
-    // Initialize items
-    allItems = items; // Assuming 'items' is your array of items
-    displayItemsOnHomePage(); // Display items on page load
+    allItems = items; 
+    displayItemsOnHomePage(); 
     displayBagIcon();
 }
 window.addEventListener("load", function () {
