@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (entry.isIntersecting) {
         const progressBar = entry.target.querySelector('.progress_bar');
         const progressValue = entry.target.querySelector('.progress_value');
-        const finalWidth = parseFloat(progressValue.textContent); // Extract the final percentage from the text
+        const finalWidth = parseFloat(progressValue.textContent); 
 
         animateProgressBar(progressBar, progressValue, finalWidth);
       }
