@@ -102,14 +102,14 @@
 }
 /* Style for the quantity buttons */
 .quantity button {
-    background-color: #f0847a; /* Red color */
-    color: #fff; /* White text */
+    background-color: #f0847a;
+    color: #fff; 
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
     font-size: 16px;
-    margin: 0 5px; /* Space between buttons */
+    margin: 0 5px; 
     transition: background-color 0.3s ease;
 }
 
@@ -118,13 +118,13 @@
 }
 
 .quantity button:focus {
-    outline: none; /* Remove default focus outline */
+    outline: none; 
 }
 
 .quantity button:disabled {
-    background-color: #e0e0e0; /* Gray color for disabled state */
-    color: #bdbdbd; /* Dark gray text */
-    cursor: not-allowed; /* Show not-allowed cursor */
+    background-color: #e0e0e0; 
+    color: #bdbdbd; 
+    cursor: not-allowed; 
 }
 
 
