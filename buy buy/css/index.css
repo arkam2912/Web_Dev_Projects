@@ -115,22 +115,22 @@ header {
   align-items: center;
   height: 450px; 
   overflow: hidden; 
-  opacity: 0; /* Initially hidden */
-  transform: translateY(-30px); /* Start slightly above */
+  opacity: 0; 
+  transform: translateY(-30px); 
   transition: opacity 1s ease, transform 1s ease;
 }
 
 .banner-image {
   width: 100%;
-  height: 450px;/* Ensures the image covers the banner area */
+  height: 450px;
   transition: transform 0.3s ease;
 }
 .banner.visible {
-  opacity: 1; /* Visible after the delay */
-  transform: translateY(0); /* Moves to original position */
+  opacity: 1;
+  transform: translateY(0); 
 }
 .banner:hover .banner-image {
-  transform: scale(1.05); /* Slight zoom effect on hover */
+  transform: scale(1.05);
 }
 
 /* Main section */
@@ -140,74 +140,74 @@ header {
 
 .banner_image {
   width: 100%;
-  border-radius: 10px; /* Adding rounded corners for a modern look */
+  border-radius: 10px; 
 }
 
 .category_heading {
   text-transform: uppercase;
   color: #3e4152;
   letter-spacing: 0.15em;
-  font-size: 2em; /* Increased font size for better readability */
-  margin: 60px 0 20px 30px; /* Adjusted margin for better spacing */
+  font-size: 2em; 
+  margin: 60px 0 20px 30px; 
   font-weight: 700;
 }
 
 .category-items,
 .items-container {
   width: 80%;
-  margin: 50px auto; /* Centered margin for consistency */
+  margin: 50px auto; 
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 20px; /* Added gap for better spacing between items */
+  gap: 20px; 
 }
 
 .items-container .item {
-  flex-basis: 30%; /* Each item takes up 30% of the container's width */
-  margin-bottom: 20px; /* Added margin for vertical spacing */
-  background-color: #f9f9f9; /* Added a background color for contrast */
-  padding: 15px; /* Added padding for better content spacing */
-  border-radius: 10px; /* Rounded corners */
+  flex-basis: 30%; 
+  margin-bottom: 20px; 
+  background-color: #f9f9f9; 
+  padding: 15px;
+  border-radius: 10px; 
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 .items-container .item:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow on hover */
+  transform: translateY(-5px); 
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); 
 }
 
 /* Footer */
 .footer_container {
-  padding: 40px 0 50px 0; /* Adjusted padding for better spacing */
+  padding: 40px 0 50px 0; 
   background: #fafbfc;
   display: flex;
-  flex-wrap: wrap; /* Ensures columns stack on smaller screens */
+  flex-wrap: wrap; 
   justify-content: space-evenly;
 }
 
 .footer_column {
-  flex-basis: 20%; /* Adjusted width for columns */
+  flex-basis: 20%; 
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px; /* Added margin to separate columns on smaller screens */
+  margin-bottom: 20px; 
 }
 
 .footer_column h3 {
   color: #282c3f;
-  font-size: 16px; /* Slightly increased font size */
-  margin-bottom: 15px; /* Reduced margin for a tighter look */
+  font-size: 16px; 
+  margin-bottom: 15px; 
 }
 
 .footer_column a {
   color: #696b79;
   font-size: 15px;
   text-decoration: none;
-  padding-bottom: 8px; /* Increased padding for better click area */
+  padding-bottom: 8px;
   transition: color 0.3s ease;
 }
 
 .footer_column a:hover {
-  color: #282c3f; /* Darker color on hover */
+  color: #282c3f;
 }
 
 .copyright {
@@ -218,17 +218,17 @@ header {
 }
 .items-container {
   width: 80%;
-  margin: 40px auto; /* Center container horizontally */
+  margin: 40px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly; /* Improved spacing between items */
+  justify-content: space-evenly; 
 }
 
 .item-container {
   width: 260px;
   margin: 15px;
   position: relative;
-  border-radius: 10px; /* Softer corners */
+  border-radius: 10px; 
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease; 
   background-color: #f5f6fa; 
@@ -242,7 +242,7 @@ header {
 
 .item-image {
   width: 100%;
-  height: 220px; /* Fixed height for consistency */
+  height: 220px; 
   object-fit: cover;
   border-bottom: 1px solid #dcdde1; 
   padding-left: 8px;
@@ -259,7 +259,7 @@ header {
   margin-top: 20px;
   font-size: 17px;
   font-weight: 700;
-  color: #2c3e50; /* Darker gray for better readability */
+  color: #2c3e50;
   margin-bottom: 8px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -268,7 +268,7 @@ header {
 }
 
 .item-name {
-  color: #7f8c8d; /* Lighter gray for item name */
+  color: #7f8c8d; 
   font-size: 15px;
   font-weight: 400;
   overflow: hidden;
@@ -280,7 +280,7 @@ header {
 .price {
   margin-top: 12px;
   font-size: 15px;
-  color: #34495e; /* Darker gray for contrast */
+  color: #34495e; 
   display: flex;
   align-items: center;
   padding-left: 8px;
@@ -289,14 +289,14 @@ header {
 .current-price {
   font-size: 15px;
   font-weight: 700;
-  color: #e74c3c; /* Red for emphasis */
+  color: #e74c3c; 
   margin-right: 5px;
   padding-left: 8px;
 }
 
 .original-price {
   text-decoration: line-through;
-  color: #bdc3c7; /* Lighter gray for strikethrough */
+  color: #bdc3c7; 
   font-weight: 400;
   font-size: 13px;
   margin-right: 5px;
@@ -304,7 +304,7 @@ header {
 }
 
 .discount {
-  color: #27ae60; /* Green for discounts */
+  color: #27ae60; 
   font-weight: 400;
   font-size: 13px;
   margin-left: 5px;
@@ -315,18 +315,18 @@ header {
   margin-top: 10px;
   font-size: 18px;
   width: 100%;
-  background-color: #2980b9; /* Bold blue button color */
+  background-color: #2980b9; 
   border: none;
   padding: 12px 18px;
   border-radius: 10px;
   color: #fff;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  transition: background-color 0.3s ease, transform 0.3s ease; 
 }
 
 .btn-add-bag:hover {
-  background-color: #1a5276; /* Significantly darker blue on hover */
-  transform: translateY(-3px); /* Lift effect on hover */
+  background-color: #1a5276; 
+  transform: translateY(-3px);
 }
 
 .bag-item-count {
@@ -351,6 +351,6 @@ header {
 }
 
 a.action_container:link {
-  color: #34495e; /* Dark gray for links */
+  color: #34495e; 
 }
 
