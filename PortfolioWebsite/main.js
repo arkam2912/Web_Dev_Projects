@@ -89,6 +89,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
     intervalIds.set(section, animateProgress);
   }
+
+  document.querySelectorAll('.progress').forEach(progressContainer => {
+    const progressBar = progressContainer.querySelector('.progress_bar');
+    const progressValue = progressContainer.previousElementSibling.querySelector('.progress_value');
+    const initialWidth = parseFloat(progressValue.textContent);
+    let isDragging = false;
+
+    progressContainer.addEventListener('mousedown', (event) => {
+      isDragging = true;
+      updateProgress(event);
+    });
+
+    document.addEventListener('mousemove', (event) => {
+      if (isDragging) {
+        updateProgress(event);
+      }
+    });
+
+    document.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        resetProgress();
+      }
+    });
+
+    function updateProgress(event) {
+      const progressWidth = progressContainer.offsetWidth;
+      const mouseX = event.clientX - progressContainer.getBoundingClientRect().left;
+      let newWidth = Math.min(Math.max(mouseX / progressWidth * 100, 0), 100);
+      newWidth = Math.round(newWidth);
+      progressBar.style.width = newWidth + '%';
+      progressValue.textContent = newWidth + '%';
+    }
+
+    function resetProgress() {
+      progressBar.style.width = initialWidth + '%';
+      progressValue.textContent = initialWidth + '%';
+    }
+  });
 });
 
 
