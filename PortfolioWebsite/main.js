@@ -37,32 +37,15 @@ sections.forEach(section => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   const progressSections = document.querySelectorAll('.progressBox');
-  let animationTimeouts = new Map();
-  let intervalIds = new Map();
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      const progressBar = entry.target.querySelector('.progress_bar');
-      const progressValue = entry.target.querySelector('.progress_value');
-      const finalWidth = parseFloat(progressValue.textContent);
-
       if (entry.isIntersecting) {
-        const timeoutId = setTimeout(() => {
-          animateProgressBar(progressBar, progressValue, finalWidth, entry.target);
-        }, 500);
-        animationTimeouts.set(entry.target, timeoutId);
-      } else {
-        if (animationTimeouts.has(entry.target)) {
-          clearTimeout(animationTimeouts.get(entry.target));
-          animationTimeouts.delete(entry.target);
-        }
+        const progressBar = entry.target.querySelector('.progress_bar');
+        const progressValue = entry.target.querySelector('.progress_value');
+        const finalWidth = parseFloat(progressValue.textContent); // Extract the final percentage from the text
 
-        if (intervalIds.has(entry.target)) {
-          clearInterval(intervalIds.get(entry.target));
-          intervalIds.delete(entry.target);
-          progressBar.style.width = '0%';
-          progressValue.textContent = '0%';
-        }
+        animateProgressBar(progressBar, progressValue, finalWidth);
       }
     });
   }, {
@@ -73,27 +56,10 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 
-  function animateProgressBar(progressBar, progressValue, finalWidth, section) {
-    let currentWidth = 0;
-
-    const animateProgress = setInterval(() => {
-      if (currentWidth >= finalWidth) {
-        clearInterval(animateProgress);
-        intervalIds.delete(section);
-      } else {
-        currentWidth++;
-        progressBar.style.width = currentWidth + '%';
-        progressValue.textContent = currentWidth + '%';
-      }
-    }, 10);
-
-    intervalIds.set(section, animateProgress);
-  }
-
   document.querySelectorAll('.progress').forEach(progressContainer => {
     const progressBar = progressContainer.querySelector('.progress_bar');
     const progressValue = progressContainer.previousElementSibling.querySelector('.progress_value');
-    const initialWidth = parseFloat(progressValue.textContent);
+    const initialWidth = parseFloat(progressValue.textContent); 
     let isDragging = false;
 
     progressContainer.addEventListener('mousedown', (event) => {
@@ -110,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.addEventListener('mouseup', () => {
       if (isDragging) {
         isDragging = false;
-        resetProgress();
+        resetProgress(); 
       }
     });
 
@@ -128,9 +94,21 @@ document.addEventListener("DOMContentLoaded", () => {
       progressValue.textContent = initialWidth + '%';
     }
   });
+
+  function animateProgressBar(progressBar, progressValue, finalWidth) {
+    let currentWidth = 0;
+    
+    const animateProgress = setInterval(() => {
+      if (currentWidth >= finalWidth) {
+        clearInterval(animateProgress);
+      } else {
+        currentWidth++;
+        progressBar.style.width = currentWidth + '%';
+        progressValue.textContent = currentWidth + '%';
+      }
+    }, 10); 
+  }
 });
-
-
 function handleScroll() {
   if (isScrolling) return;
 
