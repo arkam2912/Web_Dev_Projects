@@ -37,15 +37,32 @@ sections.forEach(section => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   const progressSections = document.querySelectorAll('.progressBox');
+  let animationTimeouts = new Map();
+  let intervalIds = new Map();
 
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const progressBar = entry.target.querySelector('.progress_bar');
-        const progressValue = entry.target.querySelector('.progress_value');
-        const finalWidth = parseFloat(progressValue.textContent); 
+      const progressBar = entry.target.querySelector('.progress_bar');
+      const progressValue = entry.target.querySelector('.progress_value');
+      const finalWidth = parseFloat(progressValue.textContent);
 
-        animateProgressBar(progressBar, progressValue, finalWidth);
+      if (entry.isIntersecting) {
+        const timeoutId = setTimeout(() => {
+          animateProgressBar(progressBar, progressValue, finalWidth, entry.target);
+        }, 500);
+        animationTimeouts.set(entry.target, timeoutId);
+      } else {
+        if (animationTimeouts.has(entry.target)) {
+          clearTimeout(animationTimeouts.get(entry.target));
+          animationTimeouts.delete(entry.target);
+        }
+
+        if (intervalIds.has(entry.target)) {
+          clearInterval(intervalIds.get(entry.target));
+          intervalIds.delete(entry.target);
+          progressBar.style.width = '0%';
+          progressValue.textContent = '0%';
+        }
       }
     });
   }, {
@@ -56,59 +73,24 @@ document.addEventListener("DOMContentLoaded", () => {
     observer.observe(section);
   });
 
-  document.querySelectorAll('.progress').forEach(progressContainer => {
-    const progressBar = progressContainer.querySelector('.progress_bar');
-    const progressValue = progressContainer.previousElementSibling.querySelector('.progress_value');
-    const initialWidth = parseFloat(progressValue.textContent); 
-    let isDragging = false;
-
-    progressContainer.addEventListener('mousedown', (event) => {
-      isDragging = true;
-      updateProgress(event);
-    });
-
-    document.addEventListener('mousemove', (event) => {
-      if (isDragging) {
-        updateProgress(event);
-      }
-    });
-
-    document.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        resetProgress(); 
-      }
-    });
-
-    function updateProgress(event) {
-      const progressWidth = progressContainer.offsetWidth;
-      const mouseX = event.clientX - progressContainer.getBoundingClientRect().left;
-      let newWidth = Math.min(Math.max(mouseX / progressWidth * 100, 0), 100);
-      newWidth = Math.round(newWidth);
-      progressBar.style.width = newWidth + '%';
-      progressValue.textContent = newWidth + '%';
-    }
-
-    function resetProgress() {
-      progressBar.style.width = initialWidth + '%';
-      progressValue.textContent = initialWidth + '%';
-    }
-  });
-
-  function animateProgressBar(progressBar, progressValue, finalWidth) {
+  function animateProgressBar(progressBar, progressValue, finalWidth, section) {
     let currentWidth = 0;
-    
+
     const animateProgress = setInterval(() => {
       if (currentWidth >= finalWidth) {
         clearInterval(animateProgress);
+        intervalIds.delete(section);
       } else {
         currentWidth++;
         progressBar.style.width = currentWidth + '%';
         progressValue.textContent = currentWidth + '%';
       }
-    }, 10); 
+    }, 10);
+
+    intervalIds.set(section, animateProgress);
   }
 });
+
 
 function handleScroll() {
   if (isScrolling) return;
