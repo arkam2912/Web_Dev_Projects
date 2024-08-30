@@ -54,7 +54,7 @@ ul {
   height: auto;
 }
 .section {
-  padding: 30px 0;
+  padding: 50px 0;
   opacity: 0;
   transition: opacity var(--scroll-animation-duration) ease-out, transform var(--scroll-animation-duration) ease-out;
 }
